@@ -32,7 +32,9 @@ public class JDBCUtils {
 		PASSWORD = properties.getProperty("jdbc.password");
 	}
 	
-	//加载驱动
+	/**
+	 * 加载驱动
+	 */
 	public static void loadDriver(){
 		try {
 			Class.forName(DRIVERCLASS);
@@ -41,7 +43,10 @@ public class JDBCUtils {
 		}
 	}
 	
-	//获取链接
+	/**
+	 * 获取链接
+	 * @return
+	 */
 	public static Connection getConn(){
 		loadDriver();
 		

@@ -65,25 +65,28 @@ public class JdbcTest {
 	
 	@Test
 	public void fun1(){
+		
+	}
+	
+	public static void main(String[] args) {
 		Connection conn = JDBCUtils.getConn();
-		String sql = "select * from tb_num";
+		String sql = "select COLUMN_NAME,column_comment from INFORMATION_SCHEMA.Columns where table_name='tb_coupon_pro' and table_schema='frw_dev'";
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			
+			StringBuffer sb = new StringBuffer();
 			while(rs.next()){
-				String id = rs.getString("id");
-				int num = rs.getInt("num");
-				System.out.println("id:"+id+"--num:"+num);
+				sb.append("pro_san_coupon."+rs.getString(1)+",");
 			}
+			System.out.println(sb);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCUtils.release(rs, stmt, conn);
 		}
 	}
-	
 	
 }
